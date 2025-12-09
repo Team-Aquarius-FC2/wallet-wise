@@ -1,15 +1,15 @@
-import { SearchGroup } from "./components/groups-overview/Forms";
+import { Form } from "./components/groups-overview/Forms";
 import { Button } from "./components/groups-overview/Buttons";
 import { List } from "./components/groups-overview/List"
 import { Plus } from "lucide-react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CreateNewGroup } from "./pages/createNewGroup";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { CreateNewGroup } from "./pages/createNewGroup";
 
 function App() {
   return (
     
     <div>
-      <SearchGroup/>
+      <Form/>
       <div className="flex justify-center">
         <Button 
         className="flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold"
@@ -40,11 +40,11 @@ function App() {
           />
         </div>
       </div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path = "/create-group" element ={<CreateNewGroup />}/>
         </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
     </div>
   )
 }

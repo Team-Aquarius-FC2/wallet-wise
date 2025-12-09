@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { Button } from "./components/groups-overview/Buttons";
-import { Forms } from "./components/groups-overview/Forms";
+import { Button } from "../components/groups-overview/Buttons";
+import { Form } from "../components/groups-overview/Forms";
 
 export const CreateNewGroup = () => {
     return (
         <div>
             <h1>Create New Group</h1>
             <h2>Group Name</h2>
-            <Forms />
+            <Form/>
             <Button 
                 className="flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold"
                 name= "Create New Group" 
