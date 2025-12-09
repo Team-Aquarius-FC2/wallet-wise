@@ -40,8 +40,8 @@ function App() {
         </div>
       </div>
       <BrowserRouter>
-        <Routes path="/create-group" element ={<Button name={name} />}>
-          
+        <Routes>
+          <Route path = "/create-group" element ={<CreateNewGroup />}/>
         </Routes>
     </BrowserRouter>
     </div>
