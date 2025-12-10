@@ -11,16 +11,14 @@ interface ListProps {
 
 export const List = ({title, subtitle, amount}: ListProps) => {
     return(
-        <div className="flex justify-between items-center rounded-sm border bg-white text-black w-80 h-15 p-2">
-            <div className="flex flex-col justify-between rounded border-[#3A7FE5] ">
-                {title}
-                <br></br>
-                {subtitle}
+        <div className="flex justify-between items-center rounded-[10px] border border-[#DEDEDE] bg-white text-black w-80 h-15 p-2 font-semibold ">
+            <div>
+            <p className="text-[16px]"> {title}  </p>
+               <p className="text-[14px text-[#8F8F8F] font-medium">{subtitle}</p> 
             </div>
             <div className="flex justify-end items-center align-text-">
-               ${amount}
+              <p className="text-[16px]"> ${amount} </p>
             </div>
         </div>
-    
     )
 }
