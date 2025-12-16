@@ -12,9 +12,9 @@ const PORT = 3000; // 5432 this is the port in .env
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use("/api", apiRouter);
+// app.use("/api", apiRouter); //!We don't need it since we are not modularazing routes
 
-// test server is working by creating an endpoint "test" that asks the db to return the number one ... should work even without any specific tables yet
+//TODO: Routes
 app.get('/test', async (req: Request, res: Response) => {
   try {
     const result = await pool.query('SELECT * FROM "Adventures"');
@@ -26,14 +26,6 @@ app.get('/test', async (req: Request, res: Response) => {
     res.status(500).send(`Womp, womp! Database is not connected ${err}`);
   }
 });
-
-//loop through the results rows to populate the adventure list
-//to get the first page rendering the all adventure data, I think we'd use app.get("api/adventures", (req,res)=> {SQL syntax...})
-//app.get("/adventures", async (req: Request, res: Response) =>  {
-
-//}
-
-//create posts: start new adventure button and Add expense button
 
 app.post('/api/adventure', async (req: Request, res: Response) => {
   try {
@@ -51,10 +43,10 @@ app.post('/api/adventure', async (req: Request, res: Response) => {
 
 //Create gets: for adventure page, adventure detail (expenses and balances sections)
 
-//400 error handler
+//TODO: 400 error handler
 app.use((req, res) => res.sendStatus(404));
 
-//global error handler 500
+//TODO: Global error handler 500
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
