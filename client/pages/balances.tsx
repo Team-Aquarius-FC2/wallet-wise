@@ -1,4 +1,3 @@
-import React from "react";
 import { List } from "../components/groups-overview/List"
 export const Balances = () => {
     return (  
