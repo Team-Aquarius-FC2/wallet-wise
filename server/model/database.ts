@@ -14,6 +14,9 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
+
+// postgresql://postgres.tnvkceecbkvzaammcylt:[YOUR-PASSWORD]@aws-1-us-east-2.pooler.supabase.com:6543/postgres
+
 // Test database connection function
 // TypeScript: Promise<void> means this function returns a Promise that resolves to nothing
 async function testConnection(): Promise<void> {
