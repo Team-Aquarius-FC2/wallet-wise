@@ -23,3 +23,4 @@ export const Button = ({ name, isActive, variant, plusIcon, route, ...props }: B
         </Link> 
     )
 };
+

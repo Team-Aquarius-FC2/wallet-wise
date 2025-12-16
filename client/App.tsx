@@ -2,12 +2,9 @@ import { Form } from "./components/groups-overview/Forms";
 import { Button } from "./components/groups-overview/Buttons";
 import { List } from "./components/groups-overview/List"
 import { Plus } from "lucide-react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CreateNewGroup } from "./pages/createNewGroup";
 import { GroupTripDetails } from "./pages/groupTripDetails";
-import { AddExpense } from "./pages/addExpense";
-import { Expenses } from "./pages/expenses";
-import { Balances } from "./pages/balances";
 
 const FirstPage = () => {
   return (
@@ -17,15 +14,15 @@ const FirstPage = () => {
           <div className="flex justify-center">
             <Button 
             className="flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold"
-              name= "Start New Adventure" 
+              name= "Create New Group" 
               variant= "ho" 
               isActive={true}
               onClick={()=> console.log("Button Click Success!")}
               plusIcon={<Plus />}
-              route="/create-adventure"
+              route="/create-group"
             />
           </div>
-          <h2 className="font-semibold text-4 pl-3 mt-4 mb-4">All Adventures</h2>
+          <h2 className="font-bold text-4 pl-3 mt-4 mb-4">All groups</h2>
           <div>
             <div className= 'flex flex-col justify-center items-center gap-3' >
               <List
@@ -61,19 +58,34 @@ function App() {
     <div>
       <BrowserRouter>
           <Routes>
-            <Route path="/create-adventure" element={<CreateNewGroup />}/>
+            <Route path="/create-group" element={<CreateNewGroup />}/>
             <Route path="/" element={<FirstPage/>}/>
-            <Route path="/trip-name" element={<GroupTripDetails/>}>
-              <Route index element={<Navigate to="expenses" replace />} />
-              <Route path="expenses" element={<Expenses />} />
-              <Route path="balances" element={<Balances />} />
-            </Route>
-            <Route path="/adventure-details" element={<AddExpense/>}/>
+            <Route path="/trip-name" element={< GroupTripDetails/>} />
           </Routes>
       </BrowserRouter>
   </div>
   )
 }
 
-export default App;
 
+//Database--Integration
+// function App() {
+//   return (
+//     <div>
+//       <BrowserRouter>
+//           <Routes>
+//             <Route path="/create-adventure" element={<CreateNewGroup />}/>
+//             <Route path="/" element={<FirstPage/>}/>
+//             <Route path="/trip-name" element={<GroupTripDetails/>}>
+//               <Route index element={<Navigate to="expenses" replace />} />
+//               <Route path="expenses" element={<Expenses />} />
+//               <Route path="balances" element={<Balances />} />
+//             </Route>
+//             <Route path="/adventure-details" element={<AddExpense/>}/>
+//           </Routes>
+//       </BrowserRouter>
+//   </div>
+//   )
+// }
+
+export default App;
