@@ -1,5 +1,4 @@
 
-import React from "react";
 
 // #3A7FE5
 
@@ -9,6 +8,7 @@ interface ListProps {
     amount: number;
 }
 
+//! We can use map later to render the child <div> for this components
 export const List = ({title, subtitle, amount}: ListProps) => {
     return(
         <div className="flex justify-between items-center rounded-[10px] border border-[#DEDEDE] bg-white text-black w-80 h-15 p-2 font-semibold ">

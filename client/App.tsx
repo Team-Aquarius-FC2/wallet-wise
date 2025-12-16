@@ -67,5 +67,26 @@ function App() {
   )
 }
 
+
+//Database--Integration
+// function App() {
+//   return (
+//     <div>
+//       <BrowserRouter>
+//           <Routes>
+//             <Route path="/create-adventure" element={<CreateNewGroup />}/>
+//             <Route path="/" element={<FirstPage/>}/>
+//             <Route path="/trip-name" element={<GroupTripDetails/>}>
+//               <Route index element={<Navigate to="expenses" replace />} />
+//               <Route path="expenses" element={<Expenses />} />
+//               <Route path="balances" element={<Balances />} />
+//             </Route>
+//             <Route path="/adventure-details" element={<AddExpense/>}/>
+//           </Routes>
+//       </BrowserRouter>
+//   </div>
+//   )
+// }
+
 export default App;
 
