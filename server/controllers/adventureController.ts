@@ -44,7 +44,7 @@ adventureController.getAdventureDetails = async (req, res, next) => {
 //getExpenses: gets expenses for one adventure by id (‘/adventure-details/expenses/:id’)
 adventureController.getExpenses = async (req, res, next) => {
     try {
-        const getExpenses = `SELECT `
+        const getExpenses = `SELECT * FROM expenses`
         const result = await db.query(getExpenses);
         res.locals.getAllExpenses = result.rows;
         return next();
@@ -57,7 +57,7 @@ adventureController.getExpenses = async (req, res, next) => {
 //getBalances: gets balances for one adventure by id (‘adventure-details/balances:id’)
 adventureController.getBalances = async (req, res, next) => {
     try {
-        const getBalances = `SELECT `
+        const getBalances = `SELECT * FROM balances`
         const result = await db.query(getBalances);
         res.locals.getAllBalances = result.rows;
         return next();
@@ -70,7 +70,9 @@ adventureController.getBalances = async (req, res, next) => {
 // createAdventure: adds new adventure (‘/create-adventure’)
 adventureController.createAdventure = async (req, res, next) => {
     try {
-        const createAdventure = `SELECT `
+        const createAdventure = 
+        `INSERT INTO adventures(id, created_at, name, description, start_date, end_date, created_by, members)
+        VALUES()`
         const result = await db.query(createAdventure);
         res.locals.createNewAdventure = result.rows;
         return next();
