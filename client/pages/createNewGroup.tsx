@@ -1,34 +1,133 @@
-import { Link } from "react-router-dom";
-import { Button } from "../components/groups-overview/Buttons";
-import {ChevronLeft, Plus}  from 'lucide-react'
+// import { Link } from "react-router-dom";
+// import { Button } from "../components/groups-overview/Buttons";
+// import {ChevronLeft, Plus}  from 'lucide-react'
 
-//do we need to input state here since we're taking in data? - esm
-//import {useState} from "react"
-//context API is a thing: The Context API provides a way to pass data deeply through the component tree without explicitly passing props down at every level (prop drilling).
-// You create a Context and a Provider component that holds the state.
-// Consumer components within the Provider's scope can access the context value using useContext
+// //do we need to input state here since we're taking in data? - esm
+// //import {useState} from "react"
+// //context API is a thing: The Context API provides a way to pass data deeply through the component tree without explicitly passing props down at every level (prop drilling).
+// // You create a Context and a Provider component that holds the state.
+// // Consumer components within the Provider's scope can access the context value using useContext
+
+// export const CreateNewGroup = () => {
+//     return (
+//         <div>
+//             <div className="flex items-center w-full ">
+//             <Link to="/">
+//             <ChevronLeft />
+//             </Link>
+//             <h1 className="text-center font-semibold">Create a New Group Trip</h1>
+//             </div>
+
+//             <label>Trip Name</label>   <br></br>
+//             <input type="text" placeholder = ""/>
+//             <Button 
+//                 className="flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold"
+//                 name= "Create New Group" 
+//                 variant= "ho" 
+//                 isActive={true}
+//                 onClick={()=> console.log("Button Click Success!")}
+//                 plusIcon={<Plus />}
+//                 route = "/trip-name"
+//             />
+//         </div>
+//     )
+// }
+
+
+//!ROSE
+import { Link } from 'react-router-dom';
+import { Button } from '../components/groups-overview/Buttons';
+import { ChevronLeft, Plus } from 'lucide-react';
+import { useState } from 'react';
 
 export const CreateNewGroup = () => {
-    return (
-        <div>
-            <div className="flex items-center w-full ">
-            <Link to="/">
-            <ChevronLeft />
-            </Link>
-            <h1 className="text-center font-semibold">Create a New Group Trip</h1>
-            </div>
+  const [adventureName, setAdventureName] = useState(''); //state to hold the input value
+  const [disableSubmit, setDisableSubmit] = useState(false);
 
-            <label>Trip Name</label>   <br></br>
-            <input type="text" placeholder = ""/>
-            <Button 
-                className="flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold"
-                name= "Create New Group" 
-                variant= "ho" 
-                isActive={true}
-                onClick={()=> console.log("Button Click Success!")}
-                plusIcon={<Plus />}
-                route = "/trip-name"
-            />
+  // const navigate = useNavigate();//maybe we need this to route to the next page after creating a group - esm
+
+  const handleChange = (e) => {
+    setAdventureName(e.target.value); //
+    console.log(adventureName); //This is to show how the adventureName hook is changing as we are tying
+  };
+
+  const handleSubmit = async (e) => {
+    //function to handle the form submission
+    e.preventDefault();
+
+    if (adventureName.trim() === '') {
+      alert('Enter an adventure name plz');
+      setDisableSubmit(true);
+      return;
+    } else {
+      try {
+        const response = await fetch('http://localhost:3000/create-group', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ groupName: adventureName }), //send the adventure name to the server
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create the adventure form');
+        }
+
+        console.log('Adventure Name: ', adventureName);
+        setAdventureName('');
+      } catch (error) {
+        console.error('Cant navegate there!', error);
+      }
+
+      //after submitting, we can navigate to the next page
+      //navigate("/trip-name"); //route to the trip name page after creating a group - esm
+    }
+  };
+
+  return (
+    <div>
+      <div className='relative w-full text-xl '>
+        <Link to='/' className='absolute left px-4 py-2 pt-4 '>
+          <ChevronLeft />
+        </Link>
+        <h1 className='text-center font-medium pt-4 '>Create Adventure</h1>
+      </div>
+
+      <h2 className='font-bold text-4 mt-6 mb-2 px-4 pl-4 text-[19px]'>
+        {' '}
+        Create a New Adventure{' '}
+      </h2>
+      <p className='text-4 mb-4 px-4 pl-4 text-[14px] font-medium  '>
+        {' '}
+        ADVENTURE NAME
+      </p>
+
+      <form onSubmit={handleSubmit}>
+        <div className='flex justify-center'>
+          <input
+            type='text'
+            className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
+            placeholder=''
+            onInput={handleChange}
+            required
+          />
         </div>
-    )
-}
+
+        <div className='flex justify-center'>
+          <Button
+            className='flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold'
+            name='Create New Group'
+            type='submit'
+            variant='ho'
+            isActive={true}
+            disabled={disableSubmit}
+            // onClick={() => console.log('Button Click Success!')}
+            plusIcon={<Plus />}
+            route='/trip-name'
+            // HERE WE HAVE TO CHANGE THE ROUTE
+          />
+        </div>
+      </form>
+    </div>
+  );
+};
