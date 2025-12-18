@@ -8,13 +8,13 @@ export const CreateNewGroup = () => {
   const [disableSubmit, setDisableSubmit] = useState(false);
 
   // const navigate = useNavigate();//maybe we need this to route to the next page after creating a group - esm
-       const values: {
-        name: string
-        description: string
-        start_date: Date
-        end_date: Date
-        members: string[]
-      };
+  interface value {
+    name: string;
+    description: string;
+    start_date: Date;
+    end_date: Date;
+    members: string[];
+   }
 
   const handleChange = (e) => {
     setAdventureName(e.target.value); //
@@ -77,6 +77,7 @@ export const CreateNewGroup = () => {
         <div className='flex justify-center'>
           <input
             type='text'
+            id='groupName'
             className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
             placeholder='Enter Group Name'
             onInput={handleChange}
@@ -90,6 +91,7 @@ export const CreateNewGroup = () => {
         <div className='flex justify-center'>
           <input
             type='text'
+            id='groupDescription'
             className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
             placeholder='Enter Group Description'
             onInput={handleChange}
@@ -103,6 +105,7 @@ export const CreateNewGroup = () => {
         <div className='flex justify-left px-4 pl-4'>
           <input
             type='date'
+            id='startDate'
             className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
             placeholder=''
             onInput={handleChange}
@@ -113,6 +116,7 @@ export const CreateNewGroup = () => {
         <div className='flex justify-right'>
           <input
             type='date'
+            id='endDate'
             className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
             placeholder=''
             onInput={handleChange}
@@ -126,6 +130,7 @@ export const CreateNewGroup = () => {
         <div className='flex justify-center'>
           <input
             type='text'
+            id='groupMembers'
             className=' w-90 rounded-xl border border-[#DEDEDE] bg-white p-4 mb-60'
             placeholder='Enter group members. Seperate all members with commas'
             onInput={handleChange}
@@ -137,7 +142,6 @@ export const CreateNewGroup = () => {
           <Button
             className='flex items-center gap-2 bg-[#3A7FE5] text-white px-4 py-2 rounded font-bold'
             name='Enter Group Members. Seperate all members with commas'
-            id="groupMembersBtn"
             type='submit'
             variant='ho'
             isActive={true}

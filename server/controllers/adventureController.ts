@@ -12,7 +12,7 @@ interface adventureController {
 
 const adventureController = {} as adventureController;
 
-//getAdventures: gets all adventures (Main page - ‘/’)
+//getAdventures: gets all adventures (Main page - ‘/’) ==> Works!
 adventureController.getAdventures = async (req, res, next) => {
   try {
     // const getAdventures = `SELECT * FROM adventures`; // Rose needs expenses
@@ -35,7 +35,7 @@ adventureController.getAdventures = async (req, res, next) => {
   }
 };
 
-//getAdventureDetails: gets one adventure by id (‘/adventure-details')
+//getAdventureDetails: gets one adventure by id (‘/adventure-details') ==>  WIP
 adventureController.getAdventureDetails = async (req, res, next) => {
   try {
     const getAdventureDetails = `SELECT * FROM adventures`;
@@ -47,7 +47,7 @@ adventureController.getAdventureDetails = async (req, res, next) => {
   }
 };
 
-//getExpenses: gets expenses for one adventure by id (‘/adventure-details/expenses/:id’)
+//getExpenses: gets expenses for one adventure by id (‘/adventure-details/expenses/:id’) ==>  WIP
 adventureController.getExpenses = async (req, res, next) => {
   try {
     // const getExpenses = `SELECT * FROM SUM(e.amount) as amount
@@ -65,10 +65,10 @@ adventureController.getExpenses = async (req, res, next) => {
   }
 };
 
-//getBalances: gets balances for one adventure by id (‘adventure-details/balances:id’)
+//getBalances: gets balances for one adventure by id (‘adventure-details/balances:id’) ==>  WIP
 adventureController.getBalances = async (req, res, next) => {
   try {
-    const getBalances = `SELECT * FROM expenses`; // Need to add a way to grab all the expneces from each adventure by ID
+    const getBalances = `SELECT * FROM expenses`; // Need to add a way to grab all the expenses from each adventure by ID
     const result = await db.query(getBalances);
     res.locals.getAllBalances = result.rows;
     return next();
@@ -77,13 +77,13 @@ adventureController.getBalances = async (req, res, next) => {
   }
 };
 
-// createAdventure: adds new adventure (‘/create-adventure’)
+// createAdventure: adds new adventure (‘/create-adventure’) ==> Works!
 adventureController.createAdventure = async (req, res, next) => {
   try {
     const { name, description, start_date, end_date, members } = req.body; // Needed for POST requests!! It's reading from the req.body, so that the SQL query knows that there are values to insert. (Equivalent to const name = req.body.name; .... and so forth)
      const createAdventure = `INSERT INTO adventures(name, description, start_date, end_date, members)
      VALUES($1, $2, $3, $4, $5)
-     RETURNING *`; // Postgres does not return inserted data by default; this allows you to get generated id and created_at. Without this, result.rows will be an empty []. (Also, INSERT results always returns an array!) 
+     RETURNING *`; // Postgres does not return inserted data by default; this allows you to get generated id and created_at. Without this, result.rows will be an empty []. (INSERT results always returns an array!) 
 
      //For adding values to placeholders (e.g. $1, $2, $3 etc)
      const values = [
